@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,11 +21,11 @@ namespace dnd.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Spells()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            ViewBag.Message = "It's a Magic, bitch";
+            var repo = new SpellsRepo();
+            return View(repo.GetAllSpells());
         }
     }
 }
