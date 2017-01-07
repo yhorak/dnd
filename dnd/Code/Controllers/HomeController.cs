@@ -21,11 +21,5 @@ namespace dnd.Controllers
             return View();
         }
 
-        public ActionResult Spells()
-        {
-            ViewBag.Message = "It's a Magic, bitch";
-            var repo = new SpellsRepo();
-            return View(repo.GetAllSpells());
-        }
     }
 }

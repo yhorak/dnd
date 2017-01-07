@@ -147,6 +147,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Code\Controllers\HomeController.cs" />
+    <Compile Include="Code\Controllers\SpellsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,11 +190,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Spells.cshtml" />
+    <Content Include="Views\Spells\Index.cshtml" />
+    <Content Include="Views\Spells\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -215,9 +216,9 @@
       <Project>{c4e35307-d854-43de-8247-2f515cef7841}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{c3d8bbd6-55a2-4ea1-8236-72e7c7c545d7}</Project>
-      <Name>DataAccess</Name>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{8DB55BF0-04E5-4833-A41C-EC267421E2E4}</Project>
+      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
