@@ -6,17 +6,17 @@ namespace dnd.Code.Controllers
 {
     public class SpellsController : Controller
     {
-        SpellsRepo _repo = new SpellsRepo();
-        public SpellsController()
+        ISpellsRepo _repo;
+        public SpellsController(ISpellsRepo repo)
         {
-
+            _repo = repo;
         }
+
         // GET: Spells
         public ActionResult Index()
         {
             ViewBag.Message = "It's a Magic, bitch";
-            var repo = new SpellsRepo();
-            return View(repo.GetAllSpells());
+            return View(_repo.GetAll());
         }
 
         public ActionResult Create()
@@ -26,29 +26,26 @@ namespace dnd.Code.Controllers
 
         public ActionResult Edit(int id)
         {
-            var repo = new SpellsRepo();
-
-            return View("Edit", repo.Get(id));
+            return View("Edit", _repo.Get(id));
         }
 
         [HttpDelete]
         public ActionResult Delete(int Id)
         {
-            var repo = new SpellsRepo();
-            repo.Delete(Id);
+            _repo.Delete(Id);
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
         public ActionResult Edit(Spell spell)
         {
-            var repo = new SpellsRepo();
             if (spell.Id == 0)
-
-            { repo.Add(spell); }
+            {
+                _repo.Add(spell);
+            }
             else
             {
-                repo.Edit(spell);
+                _repo.Edit(spell);
             }
             return RedirectToAction(nameof(Index));
         }

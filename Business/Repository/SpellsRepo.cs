@@ -6,7 +6,7 @@ using AutoMapper;
 namespace Business.Repository
 {
 
-    public class SpellsRepo
+    public class SpellsRepo : ISpellsRepo
     {
         static SpellsRepo()
         {
@@ -14,28 +14,29 @@ namespace Business.Repository
             Mapper.Initialize(cfg => cfg.CreateMap<Spell, Models.Spell>());
         }
 
-        public IEnumerable<Models.Spell> GetAllSpells()
+        public IEnumerable<Models.Spell> GetAll()
         {
             using (var context = new dnd5eEntities())
             {
-                return context.Spells.OrderBy(it => it.Level).ToList().Select(it => Mapper.Map<Models.Spell>(it));
+                return context.Spells.OrderBy(it => it.Level).ToList().Select(Mapper.Map<Models.Spell>);
             }
         }
 
-        public Models.Spell Get(int Id)
+        public Models.Spell Get(int id)
         {
             using (var context = new dnd5eEntities())
             {
-                var item = context.Spells.First(it=>it.Id == Id);
+                var item = context.Spells.First(it=>it.Id == id);
                 return Mapper.Map<Models.Spell>(item);
             }
         }
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
             using (var context = new dnd5eEntities())
             {
-                var existing = context.Spells.Find(Id);
+                var existing = context.Spells.Find(id);
+                if (existing == null) return;
                 context.Spells.Remove(existing);
                 context.SaveChanges();
             }

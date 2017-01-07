@@ -9,7 +9,7 @@ namespace Models
         public int Id { get; set; }
         [CloneProperty]
         [Required]
-        [Range(0,9)]
+        [Range(0, 9)]
         public short Level { get; set; }
         [CloneProperty]
         public string Name { get; set; }
@@ -28,7 +28,7 @@ namespace Models
         [CloneProperty]
         public bool IsVoiceComponent { get; set; }
         [CloneProperty]
-        public bool IsSomaticComponent { get; set; }
+        public bool IsSomaticComponent { get; set; } = true;
         [CloneProperty]
         public bool IsMaterialComponent { get; set; }
         [CloneProperty]
@@ -42,7 +42,7 @@ namespace Models
         [CloneProperty]
         public bool NeedConcentration { get; set; }
         [CloneProperty]
-        public string RelatedBook { get; set; }
+        public string RelatedBook { get; set; } = "Книга гравця";
 
     }
 }
