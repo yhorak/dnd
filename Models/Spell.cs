@@ -16,6 +16,8 @@ namespace Models
         [CloneProperty]
         public string School { get; set; }
         [CloneProperty]
+        public int SchoolId { get; set; }
+        [CloneProperty]
         public bool IsRitual { get; set; }
         [CloneProperty]
         public string CastDuration { get; set; }

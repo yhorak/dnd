@@ -6,7 +6,7 @@ namespace dnd.Code.Controllers
 {
     public class SpellsController : Controller
     {
-        ISpellsRepo _repo;
+        readonly ISpellsRepo _repo;
         public SpellsController(ISpellsRepo repo)
         {
             _repo = repo;
@@ -27,6 +27,11 @@ namespace dnd.Code.Controllers
         public ActionResult Edit(int id)
         {
             return View("Edit", _repo.Get(id));
+        }
+
+        public ActionResult Details(int id)
+        {
+            return View("Details", _repo.Get(id));
         }
 
         [HttpDelete]

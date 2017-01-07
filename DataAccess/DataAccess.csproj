@@ -68,6 +68,9 @@
     <Compile Include="Spell.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="SpellSchool.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

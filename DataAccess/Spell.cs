@@ -17,7 +17,6 @@ namespace DataAccess
         public int Id { get; set; }
         public short Level { get; set; }
         public string Name { get; set; }
-        public string School { get; set; }
         public bool IsRitual { get; set; }
         public string CastDuration { get; set; }
         public int Range { get; set; }
@@ -32,5 +31,8 @@ namespace DataAccess
         public string SaveThrow { get; set; }
         public bool NeedConcentration { get; set; }
         public string RelatedBook { get; set; }
+        public Nullable<int> SchoolId { get; set; }
+    
+        public virtual SpellSchool SpellSchool { get; set; }
     }
 }

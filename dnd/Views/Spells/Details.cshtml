@@ -1,0 +1,154 @@
+﻿@model Models.Spell
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Spell</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsRitual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsRitual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CastDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CastDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Range)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Range)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVoiceComponent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVoiceComponent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSomaticComponent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSomaticComponent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMaterialComponent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsMaterialComponent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Component)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Component)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Target)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Target)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trigger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trigger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaveThrow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaveThrow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedConcentration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NeedConcentration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RelatedBook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RelatedBook)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

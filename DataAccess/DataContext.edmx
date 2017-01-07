@@ -12,7 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Level" Type="smallint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="School" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
           <Property Name="IsRitual" Type="bit" Nullable="false" />
           <Property Name="CastDuration" Type="nvarchar" MaxLength="50" />
           <Property Name="Range" Type="int" Nullable="false" />
@@ -28,8 +28,32 @@
           <Property Name="NeedConcentration" Type="bit" Nullable="false" />
           <Property Name="RelatedBook" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="SpellSchool">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Spell_SpellSchool">
+          <End Role="SpellSchool" Type="Self.SpellSchool" Multiplicity="0..1" />
+          <End Role="Spell" Type="Self.Spell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpellSchool">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spell">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dnd5eModelStoreContainer">
           <EntitySet Name="Spell" EntityType="Self.Spell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellSchool" EntityType="Self.SpellSchool" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Spell_SpellSchool" Association="Self.FK_Spell_SpellSchool">
+            <End Role="SpellSchool" EntitySet="SpellSchool" />
+            <End Role="Spell" EntitySet="Spell" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -42,7 +66,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Level" Type="Int16" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="School" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsRitual" Type="Boolean" Nullable="false" />
           <Property Name="CastDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Range" Type="Int32" Nullable="false" />
@@ -57,10 +80,37 @@
           <Property Name="SaveThrow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NeedConcentration" Type="Boolean" Nullable="false" />
           <Property Name="RelatedBook" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolId" Type="Int32" />
+          <NavigationProperty Name="SpellSchool" Relationship="dnd5eModel.FK_Spell_SpellSchool" FromRole="Spell" ToRole="SpellSchool" />
         </EntityType>
         <EntityContainer Name="dnd5eEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Spells" EntityType="Self.Spell" />
+          <EntitySet Name="SpellSchools" EntityType="dnd5eModel.SpellSchool" />
+          <AssociationSet Name="FK_Spell_SpellSchool" Association="dnd5eModel.FK_Spell_SpellSchool">
+            <End Role="SpellSchool" EntitySet="SpellSchools" />
+            <End Role="Spell" EntitySet="Spells" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SpellSchool">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Spells" Relationship="dnd5eModel.FK_Spell_SpellSchool" FromRole="SpellSchool" ToRole="Spell" />
+        </EntityType>
+        <Association Name="FK_Spell_SpellSchool">
+          <End Type="dnd5eModel.SpellSchool" Role="SpellSchool" Multiplicity="0..1" />
+          <End Type="dnd5eModel.Spell" Role="Spell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpellSchool">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spell">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -70,11 +120,11 @@
           <EntitySetMapping Name="Spells">
             <EntityTypeMapping TypeName="dnd5eModel.Spell">
               <MappingFragment StoreEntitySet="Spell">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="RelatedBook" ColumnName="RelatedBook" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="School" ColumnName="School" />
                 <ScalarProperty Name="IsRitual" ColumnName="IsRitual" />
                 <ScalarProperty Name="CastDuration" ColumnName="CastDuration" />
                 <ScalarProperty Name="Range" ColumnName="Range" />
@@ -88,6 +138,14 @@
                 <ScalarProperty Name="Trigger" ColumnName="Trigger" />
                 <ScalarProperty Name="SaveThrow" ColumnName="SaveThrow" />
                 <ScalarProperty Name="NeedConcentration" ColumnName="NeedConcentration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellSchools">
+            <EntityTypeMapping TypeName="dnd5eModel.SpellSchool">
+              <MappingFragment StoreEntitySet="SpellSchool">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

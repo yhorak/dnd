@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DataAccess;
 using AutoMapper;
@@ -11,14 +12,17 @@ namespace Business.Repository
         static SpellsRepo()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Models.Spell, Spell>());
-            Mapper.Initialize(cfg => cfg.CreateMap<Spell, Models.Spell>());
+            Mapper.Initialize(cfg => cfg.CreateMap<Spell, Models.Spell>()
+                .ForMember(it => it.School, it => it.MapFrom(src => src.SpellSchool.Name)));
+
+
         }
 
         public IEnumerable<Models.Spell> GetAll()
         {
             using (var context = new dnd5eEntities())
             {
-                return context.Spells.OrderBy(it => it.Level).ToList().Select(Mapper.Map<Models.Spell>);
+                return context.Spells.Include(it => it.SpellSchool).OrderBy(it => it.Level).ToList().Select(Mapper.Map<Models.Spell>);
             }
         }
 
@@ -26,7 +30,7 @@ namespace Business.Repository
         {
             using (var context = new dnd5eEntities())
             {
-                var item = context.Spells.First(it=>it.Id == id);
+                var item = context.Spells.First(it => it.Id == id);
                 return Mapper.Map<Models.Spell>(item);
             }
         }
@@ -55,7 +59,7 @@ namespace Business.Repository
         {
             using (var context = new dnd5eEntities())
             {
-                var existing = context.Spells.Find(spell.Id); 
+                var existing = context.Spells.Find(spell.Id);
                 existing.CastDuration = spell.CastDuration;
                 context.SaveChanges();
             }
