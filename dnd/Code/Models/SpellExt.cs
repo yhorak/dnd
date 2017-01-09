@@ -22,6 +22,8 @@ namespace dnd.Code.Models
             clone.Clone(this, source);
             var level = _levels.First(it => it.Value == Level.ToString());
             level.Selected = true;
+            var duration = _durations.FirstOrDefault(it => it.Value == Duration.ToString());
+            if (duration != null) duration.Selected = true;
         }
 
         public List<SelectListItem> Schools
@@ -52,6 +54,24 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "7", Value = "7"},
             new SelectListItem { Text = "8", Value = "8"},
             new SelectListItem { Text = "9", Value = "9"}
+        };
+
+        public List<SelectListItem> Durations
+        {
+            get { return _durations; }
+        }
+        private List<SelectListItem> _durations = new List<SelectListItem>()
+        {
+            new SelectListItem { Text = "Миттєва", Value = "Миттєва"},
+            new SelectListItem { Text = "До 1 хв включно", Value = "До 1 хв включно"},
+            new SelectListItem { Text = "1 хв", Value = "1 хв"},
+            new SelectListItem { Text = "До 10 хв включно", Value = "До 10 хв включно"},
+            new SelectListItem { Text = "До години включно", Value = "До години включно"},
+            new SelectListItem { Text = "10 днів", Value = "10 днів"},
+            //new SelectListItem { Text = "6", Value = "6"},
+            //new SelectListItem { Text = "7", Value = "7"},
+            //new SelectListItem { Text = "8", Value = "8"},
+            //new SelectListItem { Text = "9", Value = "9"}
         };
     }
 }

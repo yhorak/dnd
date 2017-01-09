@@ -27,8 +27,9 @@ namespace Models
 
         [CloneProperty]
         public int Range { get; set; } = 30;
+
         [CloneProperty]
-        public string Duration { get; set; }
+        public string Duration { get; set; } = "Миттєва";
         [CloneProperty]
         public string Description { get; set; }
         [CloneProperty]
