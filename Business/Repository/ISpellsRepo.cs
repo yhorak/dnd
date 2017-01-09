@@ -10,5 +10,6 @@ namespace Business.Repository
         void Edit(Spell spell);
         Spell Get(int id);
         IEnumerable<Spell> GetAll();
+        Dictionary<string, int> GetSchools();
     }
 }

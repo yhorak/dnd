@@ -27,5 +27,6 @@ namespace DataAccess
     
         public virtual DbSet<Spell> Spells { get; set; }
         public virtual DbSet<SpellSchool> SpellSchools { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

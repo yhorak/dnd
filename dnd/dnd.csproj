@@ -164,6 +164,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Code\Controllers\HomeController.cs" />
     <Compile Include="Code\Controllers\SpellsController.cs" />
+    <Compile Include="Code\Models\SpellExt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -238,6 +240,10 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{8DB55BF0-04E5-4833-A41C-EC267421E2E4}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{19697925-6d21-43b8-9d8c-4bfb10f57b23}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,9 @@
-﻿using Business.Repository;
+﻿using System.Collections.Generic;
+using Business.Repository;
 using System.Web.Mvc;
+using dnd.Code.Models;
 using Models;
+using Models.Spells;
 
 namespace dnd.Code.Controllers
 {
@@ -21,12 +24,14 @@ namespace dnd.Code.Controllers
 
         public ActionResult Create()
         {
-            return View("Edit", new Spell());
+            //ViewBag.Schools = getSchools();
+            return View("Edit", new SpellExt() { Schools =  getSchools()});
         }
 
         public ActionResult Edit(int id)
         {
-            return View("Edit", _repo.Get(id));
+            //ViewBag.Schools = getSchools();
+            return View("Edit", new SpellExt(_repo.Get(id)) { Schools = getSchools()});
         }
 
         public ActionResult Details(int id)
@@ -53,6 +58,17 @@ namespace dnd.Code.Controllers
                 _repo.Edit(spell);
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        private List<SelectListItem> getSchools()
+        {
+            var items = new List<SelectListItem>();
+            foreach (var school in _repo.GetSchools())
+            {
+                items.Add(new SelectListItem() { Value = school.Value.ToString(), Text = school.Key });
+            }
+            return items;
+
         }
     }
 }

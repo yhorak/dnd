@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Linq;
 using DataAccess;
 using AutoMapper;
+using AutoMapper.Mappers;
+using BlSpell = Models.Spell;
 
 namespace Business.Repository
 {
@@ -11,27 +13,32 @@ namespace Business.Repository
     {
         static SpellsRepo()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Models.Spell, Spell>());
-            Mapper.Initialize(cfg => cfg.CreateMap<Spell, Models.Spell>()
+            Mapper.Initialize(cfg => cfg.CreateMap<Spell, BlSpell>()
                 .ForMember(it => it.School, it => it.MapFrom(src => src.SpellSchool.Name)));
-
-
         }
 
-        public IEnumerable<Models.Spell> GetAll()
+        public Dictionary<string, int> GetSchools()
         {
             using (var context = new dnd5eEntities())
             {
-                return context.Spells.Include(it => it.SpellSchool).OrderBy(it => it.Level).ToList().Select(Mapper.Map<Models.Spell>);
+                return context.SpellSchools.ToDictionary(it => it.Name, it => it.Id);
             }
         }
 
-        public Models.Spell Get(int id)
+        public IEnumerable<BlSpell> GetAll()
+        {
+            using (var context = new dnd5eEntities())
+            {
+                return context.Spells.Include(it => it.SpellSchool).OrderBy(it => it.Level).ToList().Select(Mapper.Map<BlSpell>);
+            }
+        }
+
+        public BlSpell Get(int id)
         {
             using (var context = new dnd5eEntities())
             {
                 var item = context.Spells.First(it => it.Id == id);
-                return Mapper.Map<Models.Spell>(item);
+                return Mapper.Map<BlSpell>(item);
             }
         }
 
@@ -46,7 +53,7 @@ namespace Business.Repository
             }
         }
 
-        public void Add(Models.Spell spell)
+        public void Add(BlSpell spell)
         {
             using (var context = new dnd5eEntities())
             {
@@ -55,14 +62,42 @@ namespace Business.Repository
             }
         }
 
-        public void Edit(Models.Spell spell)
+        public void Edit(BlSpell spell)
         {
             using (var context = new dnd5eEntities())
             {
-                var existing = context.Spells.Find(spell.Id);
-                existing.CastDuration = spell.CastDuration;
+                var mapped = map(spell);
+                context.Spells.Attach(mapped);
+                context.Entry(mapped).State = EntityState.Modified;
                 context.SaveChanges();
             }
+        }
+
+        private Spell map(BlSpell source)
+        {
+            var spell = new Spell
+            {
+                CastDuration = source.CastDuration,
+                SchoolId = source.SchoolId,
+                Component = source.Component,
+                Description = source.Description,
+                Id = source.Id,
+                Duration = source.Duration?.Trim(),
+                Name = source.Name?.Trim(),
+                IsRitual = source.IsRitual,
+                IsMaterialComponent = source.IsMaterialComponent,
+                IsSomaticComponent = source.IsSomaticComponent,
+                IsVoiceComponent = source.IsVoiceComponent,
+                Level = source.Level,
+                NeedConcentration = source.NeedConcentration,
+                Range = source.Range,
+                RelatedBook = source.RelatedBook,
+                Target = source.Target?.Trim(),
+                Trigger = source.Trigger?.Trim(),
+
+            };
+            return spell;
+
         }
     }
 }

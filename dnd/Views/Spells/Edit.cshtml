@@ -1,15 +1,16 @@
-﻿@model Models.Spell
+﻿@model dnd.Code.Models.SpellExt
 
 @{
     ViewBag.Title = "Edit";
+   
 }
 
-<h2>Edit</h2>
+<h2>Редагувати @Model.Name</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Spell</h4>
         <hr />
@@ -32,9 +33,13 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "control-label col-md-2" })
+          
             <div class="col-md-10">
-                @Html.EditorFor(model => model.School, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+                @*, new { htmlAttributes = new { @class = "form-control" } }*@
+                @Html.DropDownListFor(model => model.SchoolId, Model.Schools, null, new { htmlAttributes = new { @class = "form-control" } })
+
+                @*@Html.EditorFor(model => model.School, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.School, "", new {@class = "text-danger"})
             </div>
         </div>
 
@@ -81,28 +86,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsVoiceComponent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Component: V C M</label>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsVoiceComponent)
                     @Html.ValidationMessageFor(model => model.IsVoiceComponent, "", new { @class = "text-danger" })
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsSomaticComponent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsSomaticComponent)
                     @Html.ValidationMessageFor(model => model.IsSomaticComponent, "", new { @class = "text-danger" })
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsMaterialComponent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsMaterialComponent)
                     @Html.ValidationMessageFor(model => model.IsMaterialComponent, "", new { @class = "text-danger" })
@@ -135,14 +128,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SaveThrow, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SaveThrow, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SaveThrow, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.NeedConcentration, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -162,7 +147,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Зберегти" class="btn btn-default" />
             </div>
         </div>
     </div>

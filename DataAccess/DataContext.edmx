@@ -24,7 +24,6 @@
           <Property Name="Component" Type="nvarchar" MaxLength="100" />
           <Property Name="Target" Type="nvarchar" MaxLength="500" />
           <Property Name="Trigger" Type="nvarchar" MaxLength="100" />
-          <Property Name="SaveThrow" Type="nvarchar" MaxLength="50" />
           <Property Name="NeedConcentration" Type="bit" Nullable="false" />
           <Property Name="RelatedBook" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -34,6 +33,16 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Spell_SpellSchool">
           <End Role="SpellSchool" Type="Self.SpellSchool" Multiplicity="0..1" />
@@ -50,6 +59,7 @@
         <EntityContainer Name="dnd5eModelStoreContainer">
           <EntitySet Name="Spell" EntityType="Self.Spell" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpellSchool" EntityType="Self.SpellSchool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Spell_SpellSchool" Association="Self.FK_Spell_SpellSchool">
             <End Role="SpellSchool" EntitySet="SpellSchool" />
             <End Role="Spell" EntitySet="Spell" />
@@ -77,7 +87,6 @@
           <Property Name="Component" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Target" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Trigger" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SaveThrow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NeedConcentration" Type="Boolean" Nullable="false" />
           <Property Name="RelatedBook" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SchoolId" Type="Int32" />
@@ -90,6 +99,7 @@
             <End Role="SpellSchool" EntitySet="SpellSchools" />
             <End Role="Spell" EntitySet="Spells" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="dnd5eModel.sysdiagram" />
         </EntityContainer>
         <EntityType Name="SpellSchool">
           <Key>
@@ -111,6 +121,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -136,7 +156,6 @@
                 <ScalarProperty Name="Component" ColumnName="Component" />
                 <ScalarProperty Name="Target" ColumnName="Target" />
                 <ScalarProperty Name="Trigger" ColumnName="Trigger" />
-                <ScalarProperty Name="SaveThrow" ColumnName="SaveThrow" />
                 <ScalarProperty Name="NeedConcentration" ColumnName="NeedConcentration" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -146,6 +165,17 @@
               <MappingFragment StoreEntitySet="SpellSchool">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dnd5eModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

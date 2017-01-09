@@ -28,7 +28,6 @@ namespace DataAccess
         public string Component { get; set; }
         public string Target { get; set; }
         public string Trigger { get; set; }
-        public string SaveThrow { get; set; }
         public bool NeedConcentration { get; set; }
         public string RelatedBook { get; set; }
         public Nullable<int> SchoolId { get; set; }
