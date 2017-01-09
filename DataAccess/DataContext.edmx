@@ -21,7 +21,7 @@
           <Property Name="IsVoiceComponent" Type="bit" Nullable="false" />
           <Property Name="IsSomaticComponent" Type="bit" Nullable="false" />
           <Property Name="IsMaterialComponent" Type="bit" Nullable="false" />
-          <Property Name="Component" Type="nvarchar" MaxLength="100" />
+          <Property Name="Component" Type="nvarchar" MaxLength="500" />
           <Property Name="Target" Type="nvarchar" MaxLength="500" />
           <Property Name="Trigger" Type="nvarchar" MaxLength="100" />
           <Property Name="NeedConcentration" Type="bit" Nullable="false" />
@@ -84,7 +84,7 @@
           <Property Name="IsVoiceComponent" Type="Boolean" Nullable="false" />
           <Property Name="IsSomaticComponent" Type="Boolean" Nullable="false" />
           <Property Name="IsMaterialComponent" Type="Boolean" Nullable="false" />
-          <Property Name="Component" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Component" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Target" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Trigger" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NeedConcentration" Type="Boolean" Nullable="false" />

@@ -25,13 +25,13 @@ namespace dnd.Code.Controllers
         public ActionResult Create()
         {
             //ViewBag.Schools = getSchools();
-            return View("Edit", new SpellExt() { Schools =  getSchools()});
+            return View("Edit", new SpellExt() { Id = 0, Schools = getSchools() });
         }
 
         public ActionResult Edit(int id)
         {
             //ViewBag.Schools = getSchools();
-            return View("Edit", new SpellExt(_repo.Get(id)) { Schools = getSchools()});
+            return View("Edit", new SpellExt(_repo.Get(id)) { Schools = getSchools() });
         }
 
         public ActionResult Details(int id)

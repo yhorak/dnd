@@ -157,11 +157,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Code\App_Start\BundleConfig.cs" />
+    <Compile Include="Code\App_Start\FilterConfig.cs" />
+    <Compile Include="Code\App_Start\RouteConfig.cs" />
+    <Compile Include="Code\App_Start\UnityConfig.cs" />
+    <Compile Include="Code\App_Start\UnityMvcActivator.cs" />
     <Compile Include="Code\Controllers\HomeController.cs" />
     <Compile Include="Code\Controllers\SpellsController.cs" />
     <Compile Include="Code\Models\SpellExt.cs" />
@@ -227,7 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

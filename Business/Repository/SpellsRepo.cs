@@ -57,7 +57,8 @@ namespace Business.Repository
         {
             using (var context = new dnd5eEntities())
             {
-                context.Spells.Add(Mapper.Map<Spell>(spell));
+                var obj = map(spell);
+                context.Spells.Add(obj);
                 context.SaveChanges();
             }
         }
