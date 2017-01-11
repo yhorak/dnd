@@ -70,10 +70,12 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "1 хв", Value = "1 хв"},
             new SelectListItem { Text = "До 10 хв включно", Value = "До 10 хв включно"},
             new SelectListItem { Text = "До години включно", Value = "До години включно"},
+            new SelectListItem { Text = "8 годин", Value = "8 годин"},
             new SelectListItem { Text = "24 години", Value = "24 години"},
             new SelectListItem { Text = "10 днів", Value = "10 днів"},         
-            //new SelectListItem { Text = "7", Value = "7"},
-            //new SelectListItem { Text = "8", Value = "8"},
+            new SelectListItem { Text = "Поки не розсіється", Value = "Поки не розсіється"},
+        
+          
             //new SelectListItem { Text = "9", Value = "9"}
         };
 

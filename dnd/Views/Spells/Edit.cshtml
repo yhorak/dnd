@@ -1,4 +1,5 @@
-﻿@model dnd.Code.Models.SpellExt
+﻿@using System.Web.UI.WebControls
+@model dnd.Code.Models.SpellExt
 
 @{
     ViewBag.Title = "Edit";
@@ -15,26 +16,27 @@
         <h4>Заклинання</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
         <div class="form-group">
-            <label class="control-label col-md-2">Рівень</label>
+            <label class="control-label col-md-2">Назва</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Level, Model.Levels, null, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Назва</label>            
+            <label class="control-label col-md-2">Рівень</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                @Html.DropDownListFor(model => model.Level, Model.Levels, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Школа</label>            
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SchoolId, Model.Schools, null, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.DropDownListFor(model => model.SchoolId, Model.Schools, null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.School, "", new {@class = "text-danger"})
             </div>
         </div>
@@ -68,7 +70,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ціль</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Target, Model.Targets, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Target, Model.Targets, null, new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.Target, new {htmlAttributes = new {@class = "form-control"}})*@
                 @Html.ValidationMessageFor(model => model.Target, "", new {@class = "text-danger"})
             </div>
@@ -88,7 +90,7 @@
             <label class="control-label col-md-2">Тривалість</label>            
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Duration, new {htmlAttributes = new {@class = "form-control"}})*@
-                @Html.DropDownListFor(model => model.Duration, Model.Durations, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Duration, Model.Durations, null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Duration, "", new {@class = "text-danger"})
             </div>
         </div>
@@ -102,18 +104,22 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Компонент: V C M</label>
+            <label class="control-label col-md-2">Компонент</label>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsVoiceComponent)
+                    V
                     @Html.ValidationMessageFor(model => model.IsVoiceComponent, "", new { @class = "text-danger" })
+
                 </div>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsSomaticComponent)
+                    S
                     @Html.ValidationMessageFor(model => model.IsSomaticComponent, "", new { @class = "text-danger" })
                 </div>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsMaterialComponent)
+                    M
                     @Html.ValidationMessageFor(model => model.IsMaterialComponent, "", new { @class = "text-danger" })
                 </div>
             </div>
