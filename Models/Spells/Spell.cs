@@ -42,7 +42,7 @@ namespace Models
         public string Component { get; set; }
 
         [CloneProperty]
-        public string Target { get; set; } = "На себе";
+        public string Target { get; set; } = "Див. опис";
         [CloneProperty]
         public string Trigger { get; set; }
         [CloneProperty]
