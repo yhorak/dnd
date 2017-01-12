@@ -41,11 +41,9 @@ namespace dnd.Code.Models
             }
         }
 
-        public List<SelectListItem> Levels
-        {
-            get { return _levels; }
-        }
-        private List<SelectListItem> _levels = new List<SelectListItem>()
+        public List<SelectListItem> Levels => _levels;
+
+        private readonly List<SelectListItem> _levels = new List<SelectListItem>
         {
             new SelectListItem { Text = "Cantrip", Value = "0"},
             new SelectListItem { Text = "1", Value = "1"},
@@ -59,11 +57,9 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "9", Value = "9"}
         };
 
-        public List<SelectListItem> Durations
-        {
-            get { return _durations; }
-        }
-        private List<SelectListItem> _durations = new List<SelectListItem>()
+        public List<SelectListItem> Durations => _durations;
+
+        private readonly List<SelectListItem> _durations = new List<SelectListItem>()
         {
             new SelectListItem { Text = "Миттєва", Value = "Миттєва"},
             new SelectListItem { Text = "До 1 хв включно", Value = "До 1 хв включно"},
@@ -74,16 +70,15 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "24 години", Value = "24 години"},
             new SelectListItem { Text = "10 днів", Value = "10 днів"},         
             new SelectListItem { Text = "Поки не розсіється", Value = "Поки не розсіється"},
+            new SelectListItem { Text = "Особлива", Value = "Особлива"},
         
           
             //new SelectListItem { Text = "9", Value = "9"}
         };
 
-        public List<SelectListItem> Targets
-        {
-            get { return _targets; }
-        }
-        private List<SelectListItem> _targets = new List<SelectListItem>()
+        public List<SelectListItem> Targets => _targets;
+
+        private readonly List<SelectListItem> _targets = new List<SelectListItem>()
         {
             new SelectListItem { Text = "На себе", Value = "На себе"},
             new SelectListItem { Text = "Див. опис", Value = "Див. опис"},
