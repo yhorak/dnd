@@ -31,6 +31,7 @@ namespace Models
         [CloneProperty]
         public string Duration { get; set; } = "Миттєва";
         [CloneProperty]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [CloneProperty]
         public bool IsVoiceComponent { get; set; } = true;
