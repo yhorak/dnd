@@ -122,17 +122,6 @@
             </div>
         </div>
 
-        <div class="form-group descr">
-            <label class="control-label col-md-2">Опис</label>
-            <div class="col-md-10">
-                @(Html.Kendo().EditorFor(it => it.Description).HtmlAttributes(new { style = "height: 69vh", @class = "form-control descr-text", lang = "ru" })
-                              .Value(HttpUtility.HtmlDecode(Model.Description))
-                              .Tools(it => it.Clear().Formatting().Bold().Italic().Underline()
-                              .InsertUnorderedList().InsertOrderedList().FontColor().TableEditing()))
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">Компонент</label>
             <div class="col-md-10">
@@ -175,6 +164,17 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RelatedBook, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RelatedBook, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group descr">
+            <label class="control-label col-md-2">Опис</label>
+            <div class="col-md-10">
+                @(Html.Kendo().EditorFor(it => it.Description).HtmlAttributes(new { style = "height: 69vh", @class = "form-control descr-text", lang = "ru" })
+                              .Value(HttpUtility.HtmlDecode(Model.Description))
+                              .Tools(it => it.Clear().Formatting().Bold().Italic().Underline()
+                              .InsertUnorderedList().InsertOrderedList().FontColor().TableEditing()))
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 

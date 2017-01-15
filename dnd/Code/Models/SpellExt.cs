@@ -66,8 +66,11 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "1 хв", Value = "1 хв"},
             new SelectListItem { Text = "До 10 хв включно", Value = "До 10 хв включно"},
             new SelectListItem { Text = "До години включно", Value = "До години включно"},
+            new SelectListItem { Text = "1 година", Value = "1 година"},
+            new SelectListItem { Text = "2 годин", Value = "2 годин"},
             new SelectListItem { Text = "8 годин", Value = "8 годин"},
             new SelectListItem { Text = "24 години", Value = "24 години"},
+            new SelectListItem { Text = "7 днів", Value = "7 днів"},
             new SelectListItem { Text = "10 днів", Value = "10 днів"},         
             new SelectListItem { Text = "Поки не розсіється", Value = "Поки не розсіється"},
             new SelectListItem { Text = "Особлива", Value = "Особлива"},
@@ -81,6 +84,7 @@ namespace dnd.Code.Models
         private readonly List<SelectListItem> _targets = new List<SelectListItem>()
         {
             new SelectListItem { Text = "На себе", Value = "На себе"},
+            new SelectListItem { Text = "Дотик", Value = "Дотик"},
             new SelectListItem { Text = "Див. опис", Value = "Див. опис"},
             //new SelectListItem { Text = "1 хв", Value = "1 хв"},
             //new SelectListItem { Text = "До 10 хв включно", Value = "До 10 хв включно"},
