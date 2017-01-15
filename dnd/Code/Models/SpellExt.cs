@@ -62,6 +62,7 @@ namespace dnd.Code.Models
         private readonly List<SelectListItem> _durations = new List<SelectListItem>()
         {
             new SelectListItem { Text = "Миттєва", Value = "Миттєва"},
+            new SelectListItem { Text = "1 раунд", Value = "1 раунд"},
             new SelectListItem { Text = "До 1 хв включно", Value = "До 1 хв включно"},
             new SelectListItem { Text = "1 хв", Value = "1 хв"},
             new SelectListItem { Text = "До 10 хв включно", Value = "До 10 хв включно"},
@@ -73,6 +74,7 @@ namespace dnd.Code.Models
             new SelectListItem { Text = "7 днів", Value = "7 днів"},
             new SelectListItem { Text = "10 днів", Value = "10 днів"},         
             new SelectListItem { Text = "Поки не розсіється", Value = "Поки не розсіється"},
+            new SelectListItem { Text = "Поки не розсіється або не спрацює", Value = "Поки не розсіється або не спрацює"},
             new SelectListItem { Text = "Особлива", Value = "Особлива"},
         
           
