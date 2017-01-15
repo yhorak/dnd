@@ -19,17 +19,23 @@
         white-space: pre-line;
     }
 
+    .k-textbox {
+        max-width: 280px;
+        width: 100%;
+    }
+
     @@media(min-width: 1020px) {
         .descr {
             position: absolute;
             left: 50%;
             top: 170px;
             width: 50vw;
+            max-width: 410px;
         }
 
         textarea.descr-text {
             height: 69vh;
-            max-width: 410px;
+            max-width: 440px;
         }
     }
 </style>
@@ -124,8 +130,12 @@
         <div class="form-group descr">
             <label class="control-label col-md-2">Опис</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control descr-text", lang="ru" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @(Html.Kendo().EditorFor(it => it.Description).HtmlAttributes(new { style = "height: 69vh", @class = "form-control descr-text", lang = "ru" })
+                              .Value(HttpUtility.HtmlDecode(Model.Description))
+                              .Tools(it => it.Clear().Formatting().Bold().Italic().Underline()
+                              .FontColor().TableEditing()))
+                @*@Html.EditorFor(model => model.Description, new {htmlAttributes = new {}})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})*@
             </div>
         </div>
 
