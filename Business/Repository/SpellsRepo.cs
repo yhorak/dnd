@@ -29,7 +29,7 @@ namespace Business.Repository
         {
             using (var context = new dnd5eEntities())
             {
-                return context.Spells.Include(it => it.SpellSchool).OrderBy(it => it.Level).ToList().Select(Mapper.Map<BlSpell>);
+                return context.Spells.Include(it => it.SpellSchool).OrderBy(it => it.Level).ThenBy(it => it.Name).ToList().Select(Mapper.Map<BlSpell>);
             }
         }
 
