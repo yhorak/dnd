@@ -22,16 +22,18 @@ namespace dnd.Code.Controllers
             return View(_repo.GetAll());
         }
 
-        public ActionResult Create()
+        public ActionResult Create(bool addMore = false)
         {
             //ViewBag.Schools = getSchools();
-            return View("Edit", new SpellExt() { Id = 0, Schools = getSchools() });
+            return View("Edit", new SpellExt() { Id = 0, Schools = getSchools(), AddMore = addMore, });
         }
 
         public ActionResult Edit(int id)
         {
-            //ViewBag.Schools = getSchools();
-            return View("Edit", new SpellExt(_repo.Get(id)) { Schools = getSchools() });
+            return View("Edit", new SpellExt(_repo.Get(id))
+            {
+                Schools = getSchools()                
+            });
         }
 
         public ActionResult Details(int id)
@@ -47,7 +49,7 @@ namespace dnd.Code.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Spell spell)
+        public ActionResult Edit(SpellViewModel spell)
         {
             if (spell.Id == 0)
             {
@@ -56,6 +58,11 @@ namespace dnd.Code.Controllers
             else
             {
                 _repo.Edit(spell);
+            }
+
+            if (spell.AddMore)
+            {
+                return RedirectToAction(nameof(Create), new { addMore = true });
             }
             return RedirectToAction(nameof(Index));
         }

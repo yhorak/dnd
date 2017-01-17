@@ -8,7 +8,7 @@ using Models;
 
 namespace dnd.Code.Models
 {
-    public class SpellExt : Spell
+    public class SpellExt : SpellViewModel
     {
         private List<SelectListItem> _schools;
 
@@ -59,12 +59,15 @@ namespace dnd.Code.Models
 
         public List<SelectListItem> CastDurations { get; } = new List<SelectListItem>()
         {
-            new SelectListItem { Text = "1 бонусна дія", Value = "1 бонусна дія"},
-            new SelectListItem { Text = "1 година", Value = "1 година"},
-            new SelectListItem { Text = "1 дія", Value = "1 дія"},
             new SelectListItem { Text = "1 реакция", Value = "1 реакция"},
+            new SelectListItem { Text = "1 бонусна дія", Value = "1 бонусна дія"},
+            new SelectListItem { Text = "1 дія", Value = "1 дія"},
             new SelectListItem { Text = "1 хв", Value = "1 хв"},
             new SelectListItem { Text = "10 хв", Value = "10 хв"},
+            new SelectListItem { Text = "1 година", Value = "1 година"},
+            new SelectListItem { Text = "8 годин", Value = "8 годин"},
+            new SelectListItem { Text = "12 годин", Value = "12 годин"},
+            new SelectListItem { Text = "24 години", Value = "24 години"},
         };
 
         public List<SelectListItem> Durations => _durations;

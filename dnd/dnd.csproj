@@ -169,6 +169,7 @@
     <Compile Include="Code\Controllers\HomeController.cs" />
     <Compile Include="Code\Controllers\SpellsController.cs" />
     <Compile Include="Code\Models\SpellExt.cs" />
+    <Compile Include="Code\Models\SpellViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
