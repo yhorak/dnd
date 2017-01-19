@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using dnd.Code.Models.Auth;
+//using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity.Owin;
+//using Microsoft.Owin.Security;
 
 namespace dnd.Code.Controllers
 {
@@ -16,7 +16,27 @@ namespace dnd.Code.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            return View(new LoginModel());
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                //    var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                //    var authManager = HttpContext.GetOwinContext().Authentication;
+
+                //    var user = userManager.Find(login.Login, login.Password);
+                //    if (user != null)
+                //    {
+                //        var ident = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                //        authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                //        return Redirect(Url.Action("Index", "Home"));
+                //    }
+            }
+            ModelState.AddModelError("", "Invalid username or password");
+            return View(login);
         }
     }
 }
