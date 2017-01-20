@@ -14,9 +14,9 @@ namespace dnd.Code
         {
             app.CreatePerOwinContext(() => new SecurityContext());
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
-            app.CreatePerOwinContext<RoleManager<AppRole>>((options, context) =>
-                new RoleManager<AppRole>(
-                    new RoleStore<AppRole>(context.Get<SecurityContext>())));
+            app.CreatePerOwinContext<RoleManager<ApplicationRole>>((options, context) =>
+                new RoleManager<ApplicationRole>(
+                    new RoleStore<ApplicationRole>(context.Get<SecurityContext>())));
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

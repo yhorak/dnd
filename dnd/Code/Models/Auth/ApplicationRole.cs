@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace dnd.Code.Models.Auth
 {
-    public class AppRole : IdentityRole
+    public class ApplicationRole : IdentityRole
     {
-        public AppRole()  { }
-        public AppRole(string name) : base(name) { }
+        public ApplicationRole()  { }
+        public ApplicationRole(string name) : base(name) { }
     }
 }

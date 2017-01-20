@@ -1,16 +1,50 @@
-﻿@model dnd.Code.Models.Auth.LoginModel
+﻿@model dnd.Code.Models.Auth.UserLoginModel
 
 <h2>Вхід</h2>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@*@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Логін</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Пароль</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Запам'ятати користувача</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsRememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsRememberMe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <button> Login </button>
+        </div>
+    }*@
+
+
+<h1> -------------------------- </h1>
+
+@using (Html.BeginForm("Login", "Account"))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <div class="form-group">
             <label class="control-label col-md-2">Логін</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -21,12 +55,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-2">Запам'ятати користувача</label>
+            <label class="control-label col-md-2">Запамятати</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IsRememberMe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IsRememberMe, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
             </div>
         </div>
-        <button> Login </button>
+        <button >Зайти</button>
     </div>
 }

@@ -9,19 +9,16 @@ using Microsoft.Owin;
 
 namespace dnd.Code.Models.Auth
 {
-    public class AppUserManager : UserManager<AppUser>
+    public class AppUserManager : UserManager<ApplicationUser>
     {
-        public AppUserManager(IUserStore<AppUser> store)
-            : base(store)
+        public AppUserManager(IUserStore<ApplicationUser> store): base(store)
         {
         }
 
         // this method is called by Owin therefore best place to configure your User Manager
-        public static AppUserManager Create(
-            IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
+        public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
         {
-            var manager = new AppUserManager(
-                new UserStore<AppUser>(context.Get<SecurityContext>()));
+            var manager = new AppUserManager(new UserStore<ApplicationUser>(new SecurityContext()));
 
             // optionally configure your manager
             // ...
