@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using dnd.Code.Extensions;
 using dnd.Code.Models.Auth;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -38,10 +39,12 @@ namespace dnd.Code.Controllers
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
             authManager.SignOut();
+            var x = User.IsAdmin();
             return Redirect(Url.Action("Index", "Home"));
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Role(string roleName)
         {
             var roleManager = HttpContext.GetOwinContext().GetUserManager<RoleManager<ApplicationRole>>();

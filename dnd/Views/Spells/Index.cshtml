@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Models.Spell>
+﻿
+@using dnd.Code.Extensions
+@model IEnumerable<Models.Spell>
 
 @{
     ViewBag.Title = "Заклинання";
@@ -7,9 +9,9 @@
 <h2>Заклинання</h2>
 
 <p>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.IsAdmin())
     {
-    @Html.ActionLink("Додати нове", "Create")
+        @Html.ActionLink("Додати нове", "Create")
     }
 </p>
 <table class="table">
@@ -41,9 +43,13 @@
                 @Html.DisplayFor(modelItem => item.RelatedBook)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+               
+                @if (User.IsAdmin())
+                {
+                    <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                    <text>|</text> @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                }
             </td>
         </tr>
     }

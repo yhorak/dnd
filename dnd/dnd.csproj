@@ -201,6 +201,7 @@
     <Compile Include="Code\Controllers\AccountController.cs" />
     <Compile Include="Code\Controllers\HomeController.cs" />
     <Compile Include="Code\Controllers\SpellsController.cs" />
+    <Compile Include="Code\Extensions\PricipalExtensions.cs" />
     <Compile Include="Code\Models\Auth\ApplicationRole.cs" />
     <Compile Include="Code\Models\Auth\ApplicationUser.cs" />
     <Compile Include="Code\Models\Auth\AppUserManager.cs" />

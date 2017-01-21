@@ -22,12 +22,14 @@ namespace dnd.Code.Controllers
             return View(_repo.GetAll());
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(bool addMore = false)
         {
             //ViewBag.Schools = getSchools();
             return View("Edit", new SpellExt() { Id = 0, Schools = getSchools(), AddMore = addMore, });
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             return View("Edit", new SpellExt(_repo.Get(id))
@@ -42,6 +44,7 @@ namespace dnd.Code.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int Id)
         {
             _repo.Delete(Id);
@@ -49,6 +52,7 @@ namespace dnd.Code.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(SpellViewModel spell)
         {
             if (spell.Id == 0)

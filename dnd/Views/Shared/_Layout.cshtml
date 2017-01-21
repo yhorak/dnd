@@ -34,23 +34,26 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Таверна", "Index", "Home")</li>
                     <li>@Html.ActionLink("Заклинання", "Index", "Spells")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     @{
                         if (!User.Identity.IsAuthenticated)
-                        {                            
+                        {
                             <li>@Html.ActionLink("Зайти", "Login", "Account")</li>
                             <li>@Html.ActionLink("Приєднатися", "Register", "Account")</li>
                         }
                         else
                         {
-                            using (Html.BeginForm("Logout", "Account", new { }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" title="Вийти">Вийти</a>
+                            </li>
+
+                            using (Html.BeginForm("Logout", "Account", new { }, FormMethod.Post, new { id = "logoutForm", @class = "nav" }))
                             {
-                                <li>
-                                    <a href="javascript:document.getElementById('logoutForm').submit()" title="Log out">Вийти</a>
-                                </li>
                             }
+
                         }
                     }
-
                 </ul>
             </div>
         </div>

@@ -1,4 +1,5 @@
-﻿@model Models.Spell
+﻿@using dnd.Code.Extensions
+@model Models.Spell
 
 @{
     ViewBag.Title = "Details";
@@ -145,6 +146,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (User.IsAdmin())
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
