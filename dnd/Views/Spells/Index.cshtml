@@ -6,52 +6,61 @@
     ViewBag.Title = "Заклинання";
 }
 
-<h2>Заклинання</h2>
-
-<p>
-    @if (User.IsAdmin())
-    {
-        @Html.ActionLink("Додати нове", "Create")
+<style>
+    .header {
+        display: inline-block;
     }
-</p>
-<table class="table">
-    <tr>
-        <th> Рівень </th>
-        <th> Ім’я </th>
-        <th> Школа </th>
-        <th> Ритуал </th>
-        <th> Джерело </th>
-        <th></th>
-    </tr>
+</style>
 
-    @foreach (var item in Model)
-    {
+<h2 class="header">Заклинання:
+    <span> @Model.Count() </span>
+</h2>
+
+
+    <p>
+        @if (User.IsAdmin())
+        {
+            @Html.ActionLink("Додати нове", "Create")
+        }
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.School)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRitual)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RelatedBook)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-               
-                @if (User.IsAdmin())
-                {
-                    <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.Id });
-                    <text>|</text> @Html.ActionLink("Delete", "Delete", new { id = item.Id });
-                }
-            </td>
+            <th> Рівень </th>
+            <th> Ім’я </th>
+            <th> Школа </th>
+            <th> Ритуал </th>
+            <th> Джерело </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.School)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRitual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RelatedBook)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                    @if (User.IsAdmin())
+                {
+                        <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                        <text>|</text> @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                }
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -5,10 +5,32 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    .spell-name {
+        font-weight: 700;
+        color: slategray;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    .ritual {
+        font-weight: 600;
+        color: gray;
+        margin-top: 20px;
+        margin-left: 12px;
+    }
+</style>
+
+<h2> Заклинання </h2>
 
 <div>
-    <h4>Spell</h4>
+    <h3 class="spell-name">
+        @Model.Name
+    </h3>
+    @if (Model.IsRitual)
+    {
+        <span class="ritual"> Ритуал </span>
+    }
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,27 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.School)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.School)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsRitual)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsRitual)
         </dd>
 
         <dt>
