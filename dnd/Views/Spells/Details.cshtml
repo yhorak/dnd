@@ -1,4 +1,5 @@
-﻿@using dnd.Code.Extensions
+﻿@using System.Security.AccessControl
+@using dnd.Code.Extensions
 @model Models.Spell
 
 @{
@@ -6,155 +7,153 @@
 }
 
 <style>
+    .spell-header {
+        background-color: lightgray;
+        padding-bottom: 4px;
+        padding-top: 4px;
+    }
+
+    .spell-level {
+        background: cadetblue;
+        padding: 12px 24px 10px 24px;
+        font-weight: 700;
+        font-size: 24px;
+        float: left;
+        margin-right: 24px;
+        color: ghostwhite;
+    }
+
     .spell-name {
         font-weight: 700;
-        color: slategray;
-        margin-top: 20px;
+        color: brown;
+        margin-top: 12px;
         display: inline-block;
+    }
+
+    .description {
+        max-width: 510px;
+        margin: 10px 0px;
     }
 
     .ritual {
         font-weight: 600;
-        color: gray;
-        margin-top: 20px;
+        color: whitesmoke;
+        margin-top: 12px;
         margin-left: 12px;
+    }
+
+    .control-label {
+        padding-top: 0px !important;
+    }
+
+    .form-group {
+        margin-bottom: 4px;
     }
 </style>
 
 <h2> Заклинання </h2>
 
 <div>
-    <h3 class="spell-name">
-        @Model.Name
-    </h3>
-    @if (Model.IsRitual)
-    {
-        <span class="ritual"> Ритуал </span>
-    }
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Level)
-        </dt>
+    <div class="spell-level ">
+        <span>
+            @Model.Level
+        </span>
+    </div>
+    <div class="spell-header">
+        <h3 class="spell-name">
+            @Model.Name
+        </h3>
+        @if (Model.IsRitual)
+        {
+            <span class="ritual"> Ритуал </span>
+        }
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Level)
-        </dd>
+    <div class="form-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.School)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Школа</label>
+            <div class="col-md-10">
+                @Model.School
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.School)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Час накладання</label>
+            <div class="col-md-10">
+                @Model.CastDuration
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CastDuration)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Відстань</label>
+            <div class="col-md-10">
+                @Model.Range (@Model.Target)
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CastDuration)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Компонент</label>
+            <div class="col-md-10">
+                @if (Model.IsVoiceComponent)
+                { <text> Голос </text>  }
+                @if (Model.IsVoiceComponent && (Model.IsSomaticComponent || Model.IsMaterialComponent))
+                {
+                    <text> | </text>
+                }
+                @if (Model.IsSomaticComponent)
+                { <text>  Рухи | </text> }
+                @if (Model.IsMaterialComponent)
+                { <text>  Матеріал : </text> }
+                <br />
+                <i> @Model.Component </i>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Range)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Тривалість</label>
+            <div class="col-md-10">
+                @if (Model.NeedConcentration)
+                {
+                    <b> <i> Концентрація: </i> </b>
+                }
+                @Model.Duration
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Range)
-        </dd>
+        @if (!string.IsNullOrEmpty(Model.Trigger))
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">Тригер</label>
+                <div class="col-md-10">
+                    @Model.Trigger
+                </div>
+            </div>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 description">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+            </div>
+           
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
 
-        <dd>
-            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Джерело</label>
+            <div class="col-md-10">
+                @Model.RelatedBook
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsVoiceComponent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsVoiceComponent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSomaticComponent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSomaticComponent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsMaterialComponent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsMaterialComponent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Component)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Component)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Target)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Target)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Trigger)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Trigger)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SaveThrow)
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NeedConcentration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NeedConcentration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RelatedBook)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RelatedBook)
-        </dd>
-
-    </dl>
+    </div>
 </div>
 <p>
     @if (User.IsAdmin())
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>
+        @Html.ActionLink("Редагувати", "Edit", new { id = Model.Id }) <text>|</text>
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("До списку", "Index")
 </p>

@@ -12,55 +12,56 @@
     }
 </style>
 
-<h2 class="header">Заклинання:
+<h2 class="header">
+    Заклинання:
     <span> @Model.Count() </span>
 </h2>
 
 
-    <p>
-        @if (User.IsAdmin())
-        {
-            @Html.ActionLink("Додати нове", "Create")
-        }
-    </p>
-    <table class="table">
+<p>
+    @if (User.IsAdmin())
+    {
+        @Html.ActionLink("Додати нове", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th> Рівень </th>
+        <th> Ім’я </th>
+        <th> Школа </th>
+        <th> Ритуал </th>
+        <th> Джерело </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th> Рівень </th>
-            <th> Ім’я </th>
-            <th> Школа </th>
-            <th> Ритуал </th>
-            <th> Джерело </th>
-            <th></th>
-        </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRitual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelatedBook)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Level)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.School)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsRitual)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RelatedBook)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-
-                    @if (User.IsAdmin())
+                @if (User.IsAdmin())
                 {
-                        <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.Id });
-                        <text>|</text> @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                    <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                    <text>|</text> @Html.ActionLink("Delete", "Delete", new { id = item.Id });
                 }
-                </td>
-            </tr>
-        }
+            </td>
+        </tr>
+    }
 
-    </table>
+</table>
