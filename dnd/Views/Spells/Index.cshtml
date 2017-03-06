@@ -21,7 +21,10 @@
 <p>
     @if (User.IsAdmin())
     {
-        @Html.ActionLink("Додати нове", "Create")
+        <ul>
+            <li>@Html.ActionLink("Додати нове", "Create")</li>
+            <li>@Html.ActionLink("Класові заклинання", "ClassSpells")</li>
+        </ul>
     }
 </p>
 <table class="table">

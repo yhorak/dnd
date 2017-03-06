@@ -201,12 +201,14 @@
     <Compile Include="Code\Controllers\AccountController.cs" />
     <Compile Include="Code\Controllers\HomeController.cs" />
     <Compile Include="Code\Controllers\SpellsController.cs" />
+    <Compile Include="Code\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Code\Extensions\PricipalExtensions.cs" />
     <Compile Include="Code\Models\Auth\ApplicationRole.cs" />
     <Compile Include="Code\Models\Auth\ApplicationUser.cs" />
     <Compile Include="Code\Models\Auth\AppUserManager.cs" />
     <Compile Include="Code\Models\Auth\UserLoginModel.cs" />
     <Compile Include="Code\Models\Auth\SecurityContext.cs" />
+    <Compile Include="Code\Models\ClassSpell.cs" />
     <Compile Include="Code\Models\SpellExt.cs" />
     <Compile Include="Code\Models\SpellViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -284,6 +286,7 @@
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Spells\ClassSpells.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Business.Repository;
 using System.Web.Mvc;
+using dnd.Code.Extensions;
 using dnd.Code.Models;
 using Models;
 using Models.Spells;
@@ -34,8 +36,30 @@ namespace dnd.Code.Controllers
         {
             return View("Edit", new SpellExt(_repo.Get(id))
             {
-                Schools = getSchools()                
+                Schools = getSchools()
             });
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ClassSpells()
+        {
+            var all = _repo.GetAll();
+            var chosen = _repo.GetClassSpells();
+            var hash = chosen.ToHashSet();
+            var vm = new ClassSpell()
+            {
+                AllSpells =
+                    all.Select(
+                        it =>
+                            new SelectListItem
+                            {
+                                Value = it.Id.ToString(),
+                                Text = it.Name,
+                                Selected = hash.Contains(it.Id)
+                            }),
+                SelectedSpells = chosen.ToList(),
+            };
+            return View(vm);
         }
 
         public ActionResult Details(int id)

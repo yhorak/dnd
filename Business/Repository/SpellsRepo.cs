@@ -17,6 +17,14 @@ namespace Business.Repository
                 .ForMember(it => it.School, it => it.MapFrom(src => src.SpellSchool.Name)));
         }
 
+        public IEnumerable<int> GetClassSpells(int classId = 1)
+        {
+            using (var context = new dnd5eEntities())
+            {
+                return context.Classes.First(it => it.Id == classId).ClassSpells.Select(it => it.SpellId).ToList();
+            }
+        }
+
         public Dictionary<string, int> GetSchools()
         {
             using (var context = new dnd5eEntities())

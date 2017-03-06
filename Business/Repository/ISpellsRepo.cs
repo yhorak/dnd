@@ -11,5 +11,6 @@ namespace Business.Repository
         Spell Get(int id);
         IEnumerable<Spell> GetAll();
         Dictionary<string, int> GetSchools();
+        IEnumerable<int> GetClassSpells(int classId = 1);
     }
 }

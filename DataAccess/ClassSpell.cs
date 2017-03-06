@@ -12,12 +12,13 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class ClassSpell
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id { get; set; }
+        public int ClassId { get; set; }
+        public int SpellId { get; set; }
+    
+        public virtual Class Class { get; set; }
+        public virtual Spell Spell { get; set; }
     }
 }

@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassSpell.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,9 +75,6 @@
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="SpellSchool.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -8,7 +8,10 @@
         <EntityTypeShape EntityType="dnd5eModel.Spell" Width="1.5" PointX="6.625" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="dnd5eModel.SpellSchool" Width="1.5" PointX="4.25" PointY="0.875" />
         <AssociationConnector Association="dnd5eModel.FK_Spell_SpellSchool" />
-        <EntityTypeShape EntityType="dnd5eModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dnd5eModel.Class" Width="1.5" PointX="2.375" PointY="2.875" />
+        <EntityTypeShape EntityType="dnd5eModel.ClassSpell" Width="1.5" PointX="4.25" PointY="2.875" />
+        <AssociationConnector Association="dnd5eModel.FK_ClassSpells_Class" />
+        <AssociationConnector Association="dnd5eModel.FK_ClassSpells_Spell" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
